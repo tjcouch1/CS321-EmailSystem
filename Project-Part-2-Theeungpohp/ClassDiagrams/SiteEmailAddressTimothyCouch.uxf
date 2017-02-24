@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>260</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>EmailAddress
+--
+-name: String
+-siteName: String
+-address: String
+--
++EmailAddress(String a)
++getname(): String
++getSiteName(): String
++getAddress(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>30</y>
+      <w>270</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Site
+--
+-accounts: ArrayList&lt;Account&gt;
+--
++Site()
++addAccount(String address)
++getEmail(Account a, emailIndex i): Email
++sendEmail(Account a)
++deleteEmail(Account a, emailIndex i)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>150</x>
+      <y>150</y>
+      <w>30</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+</diagram>
