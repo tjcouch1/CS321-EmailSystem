@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>1</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>416</y>
+      <w>21</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>EmailAddress
+--
+-name: String
+-siteName: String
+-address: String
+--
++EmailAddress(String a)
++getname(): String
++getSiteName(): String
++getAddress(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>571</x>
+      <y>340</y>
+      <w>27</w>
+      <h>43</h>
+    </coordinates>
+    <panel_attributes>Site
+--
+-accounts: ArrayList&lt;Account&gt;
+--
++Site()
++addAccount(String address)
++deleteAccount(String address)
++getAccount(String address)
++sendEmail(Email e)
++deleteEmail(Account a, int emailIndex)
++getEmail(int accountIndex, 
+			int mailboxIndex, 
+			int emailIndex): Email</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>583</x>
+      <y>382</y>
+      <w>3</w>
+      <h>37</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>571</x>
+      <y>226</y>
+      <w>27</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-name: String
+-localSite: Site
+-remoteSite: Site
+--
++User(String name)
++getLocalSite()
++getRemoteSite()
++addAccount(String address)
++deleteAccount(String address)
++getAccount(String address)
++sendEmail(Email e)
++getEmail(int siteIndex, 
+			int accountIndex, 
+			int mailboxIndex, 
+			int emailIndex): Email</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>417</y>
+      <w>27</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>Account
+--
++sendEmail(Email e)
++getEmail(int mailboxIndex, 
+			int emailIndex): Email</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>573</x>
+      <y>474</y>
+      <w>21</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Mailbox
+--
+-emails: ArrayList&lt;Email&gt;
+--
++getEmail(int emailIndex): String
++addEmail(Email e)
++deleteEmail(int emailIndex)
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>573</x>
+      <y>550</y>
+      <w>21</w>
+      <h>13</h>
+    </coordinates>
+    <panel_attributes>Email
+--
+-message: String
+-sender: String
+-reciever: String
+--
++getMessage(): String
++getSender(): String
++getReceiver(): String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>537</y>
+      <w>3</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>554</x>
+      <y>123</y>
+      <w>9</w>
+      <h>3</h>
+    </coordinates>
+    <panel_attributes>EmailMain</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>529</x>
+      <y>128</y>
+      <w>15</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>GUI
+--
++GUI(Controller c)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>535</x>
+      <y>125</y>
+      <w>25</w>
+      <h>5</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;30.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>547</x>
+      <y>135</y>
+      <w>23</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
++Controller(EmailClientSystem ecs)
++sendEmail(Email e)
++getEmail(int userIndex, 
+			int siteIndex, 
+			int accountIndex, 
+			int mailboxIndex, 
+			int emailIndex): Email</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>557</x>
+      <y>125</y>
+      <w>3</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>535</x>
+      <y>142</y>
+      <w>14</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>120.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>574</x>
+      <y>140</y>
+      <w>21</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>EmailClientSystem
+--
++sendEmail(Email e)
++getEmail(int userIndex, 
+			int siteIndex, 
+			int accountIndex, 
+			int mailboxIndex, 
+			int emailIndex): Email</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>569</x>
+      <y>152</y>
+      <w>7</w>
+      <h>3</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>557</x>
+      <y>125</y>
+      <w>29</w>
+      <h>17</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>270.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>211</y>
+      <w>3</w>
+      <h>17</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>583</x>
+      <y>323</y>
+      <w>4</w>
+      <h>19</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>596</x>
+      <y>422</y>
+      <w>14</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>583</x>
+      <y>462</y>
+      <w>4</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=3</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>535</x>
+      <y>142</y>
+      <w>40</w>
+      <h>417</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>380.0;4150.0;40.0;4150.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
