@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Mailbox 
 {
+	@SuppressWarnings("unused")
 	private ArrayList<Email> emails = new ArrayList<Email>();
 	
 	public Mailbox()
