@@ -52,9 +52,48 @@ public class GUI {
 		// top panel of buttons
 		JPanel buttonPanel = new JPanel();
 
+		JButton composeButton = new JButton("Compose");
+		buttonPanel.add(composeButton);
+		composeButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				// Compose message Pop-up code here
+			}
+		});
+		
+		JButton sendButton = new JButton("Send");
+		buttonPanel.add(sendButton);
+		sendButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				// Send message code here
+			}
+		});
+		
+		JButton replyButton = new JButton("Reply");
+		buttonPanel.add(replyButton);
+		replyButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				// Reply to message Pop-up code here
+			}
+		});
+		
+		JButton deleteButton = new JButton("Delete");
+		buttonPanel.add(deleteButton);
+		deleteButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				// Delete message code here
+			}
+		});
+		
+		topPanel.add(buttonPanel);
+		//END TOP BUTTON PANEL CODE -Daniel
+		
+		// Adding temp 2nd button panel for JTree testing -Daniel
+		JPanel buttonPanel2 = new JPanel();
+		
+
 		// testing - Please DO NOT REMOVE (Only comment out)
 		JButton clearButton = new JButton("Clear Message");
-		buttonPanel.add(clearButton);
+		buttonPanel2.add(clearButton);
 		clearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				messageArea.setText("");
@@ -62,7 +101,7 @@ public class GUI {
 		});
 
 		JButton addNodeButton = new JButton("Add Node");
-		buttonPanel.add(addNodeButton);
+		buttonPanel2.add(addNodeButton);
 		addNodeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
@@ -72,7 +111,7 @@ public class GUI {
 		});
 
 		JButton deleteNodeButton = new JButton("Delete Node");
-		buttonPanel.add(deleteNodeButton);
+		buttonPanel2.add(deleteNodeButton);
 		deleteNodeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
@@ -82,7 +121,7 @@ public class GUI {
 			}
 		});
 
-		topPanel.add(buttonPanel);
+		topPanel.add(buttonPanel2);
 
 		mainFrame.add(topPanel, BorderLayout.NORTH);
 
