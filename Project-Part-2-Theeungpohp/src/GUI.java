@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -43,6 +46,50 @@ public class GUI {
 		mainFrame.setSize(800, 600);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setTitle("Email System - Theeungpohp");
+		
+		//top menu thing
+		JMenuBar menuBar = new JMenuBar();
+		
+		JMenu accountMenu = new JMenu("Account");
+		
+		JMenuItem addAccountItem = new JMenuItem("Add Account");
+		addAccountItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//add account code
+			}
+		});
+		accountMenu.add(addAccountItem);
+		JMenuItem removeAccountItem = new JMenuItem("Remove Account");
+		removeAccountItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//remove account code
+			}
+		});
+		accountMenu.add(removeAccountItem);
+		
+		menuBar.add(accountMenu);
+		
+		JMenu userMenu = new JMenu("User");
+		
+		JMenuItem addUserItem = new JMenuItem("Add User");
+		addUserItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//add user code
+			}
+		});
+		userMenu.add(addUserItem);
+		JMenuItem removeUserItem = new JMenuItem("Remove User");
+		removeUserItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//remove user code
+			}
+		});
+		userMenu.add(removeUserItem);
+		
+		menuBar.add(userMenu);
+		
+		//finish and add menubar
+		mainFrame.setJMenuBar(menuBar);
 
 		// top panel of stuff - Daniel
 		JPanel topPanel = new JPanel();
@@ -106,7 +153,8 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-				model.insertNodeInto(new DefaultMutableTreeNode("newChild"), selectedNode, selectedNode.getChildCount());
+				if (selectedNode != null)
+					model.insertNodeInto(new DefaultMutableTreeNode("newChild"), selectedNode, selectedNode.getChildCount());
 			}
 		});
 
@@ -116,8 +164,11 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-				tree.setSelectionPath(null);
-				model.removeNodeFromParent(selectedNode);
+				if (selectedNode != null)
+				{
+					tree.setSelectionPath(null);
+					model.removeNodeFromParent(selectedNode);
+				}
 			}
 		});
 
