@@ -135,6 +135,7 @@ public class GUI {
 		//END TOP BUTTON PANEL CODE -Daniel
 		
 		// Adding temp 2nd button panel for JTree testing -Daniel
+		/*
 		JPanel buttonPanel2 = new JPanel();
 		
 
@@ -173,6 +174,7 @@ public class GUI {
 		});
 
 		topPanel.add(buttonPanel2);
+		*/
 
 		mainFrame.add(topPanel, BorderLayout.NORTH);
 
