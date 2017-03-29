@@ -1,0 +1,16 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><element><id>Relation</id><coordinates><x>340</x><y>130</y><w>120</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=n
+m2=1</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>70</y><w>270</w><h>130</h></coordinates><panel_attributes>User
+--
+-name: string
+--
++User()
++newAccount(String address)
++deleteAccount(String address)
++getAccount(String address)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>70</y><w>270</w><h>130</h></coordinates><panel_attributes>Account
+--
+-sites: ArrayList&lt;Site&gt;
+--
++Account()
++getLocalSite()
++getRemotSite()</panel_attributes><additional_attributes></additional_attributes></element></diagram>

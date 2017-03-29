@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>518</x>
+      <y>910</y>
+      <w>147</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>EmailAddress
+--
+-name: String
+-siteName: String
+-address: String
+--
++EmailAddress(String a)
++getname(): String
++getSiteName(): String
++getAddress(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>553</y>
+      <w>203</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>Site
+--
+-accounts: ArrayList&lt;Account&gt;
+--
++Site()
++addAccount(String address)
++deleteAccount(String address)
++getAccount(String address)
++sendEmail(Email e)
++deleteEmail(Account a, int emailIndex)
++getEmail(int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex): Email
++deleteEmail(int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex)
++addAccount(String emailAddress): Account
++deleteAccount(int accountIndex)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>742</y>
+      <w>21</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>525</y>
+      <w>196</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-name: String
+-localSite: Site
+-remoteSite: Site
+--
++User(String name)
++getSiteByIndex(int siteIndex)
++getLocalSite()
++getRemoteSite()
++addAccount(String address)
++deleteAccount(String address)
++getAccount(String address)
++sendEmail(Email e)
++getEmail(int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex): Email
++deleteEmail(int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex)
++addAccount(String emailAddress): Account
++deleteAccount(int siteIndex, 
+            int accountIndex)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>896</y>
+      <w>189</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Account
+--
+-inbox: Mailbox
+-sent: Mailbox
+-trash: Mailbox
+--
++getMailboxByIndex(int mailboxIndex)
++sendEmail(Email e)
++getEmail(int mailboxIndex, 
+            int emailIndex): Email
++deleteEmail(int mailboxIndex, 
+            int emailIndex)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>266</x>
+      <y>1141</y>
+      <w>147</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Mailbox
+--
+-emails: ArrayList&lt;Email&gt;
+--
++getEmail(int emailIndex): String
++addEmail(Email e)
++deleteEmail(int emailIndex)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>1127</y>
+      <w>147</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Email
+--
+-message: String
+-sender: String
+-reciever: String
+--
++getMessage(): String
++getSender(): String
++getReceiver(): String
++copy(): Email
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>406</x>
+      <y>1162</y>
+      <w>112</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>385</x>
+      <y>42</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>EmailMain</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>77</y>
+      <w>140</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>GUI
+--
++GUI(Controller c)
++composeEmail()
++sendEmail(Email e)
++getEmail(int userIndex, 
+            int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex): Email
++replyEmail()
++deleteEmail(int userIndex, 
+            int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex)
++addUser()
++deleteUser(int userIndex)
++addAccount()
++deleteAccount(int userIndex, 
+            int siteIndex, 
+            int accountIndex)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>245</x>
+      <y>56</y>
+      <w>182</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>126</y>
+      <w>196</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
++Controller(EmailClientSystem ecs)
++sendEmail(Email e)
++getEmail(int userIndex, 
+            int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex): Email
++deleteEmail(int userIndex, 
+            int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex)
++addUser(String userName): User
++deleteUser(int userIndex)
++addAccount(String emailAddress): Account
++deleteAccount(int userIndex, 
+            int siteIndex, 
+            int accountIndex)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>406</x>
+      <y>56</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>567</x>
+      <y>168</y>
+      <w>196</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>EmailClientSystem
+--
+-users: ArrayList&lt;User&gt;
+--
++sendEmail(Email e)
++getEmail(int userIndex, 
+            int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex): Email
++deleteEmail(int userIndex, 
+            int siteIndex, 
+            int accountIndex, 
+            int mailboxIndex, 
+            int emailIndex)
++addUser(String userName): User
++deleteUser(int userIndex)
++addAccount(String emailAddress): Account
++deleteAccount(int userIndex, 
+            int siteIndex, 
+            int accountIndex)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>525</x>
+      <y>252</y>
+      <w>56</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>406</x>
+      <y>56</y>
+      <w>203</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>270.0;160.0;270.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>637</x>
+      <y>392</y>
+      <w>21</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>630</y>
+      <w>70</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>427</x>
+      <y>931</y>
+      <w>105</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>1015</y>
+      <w>28</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=3</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>203</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>322</y>
+      <w>406</w>
+      <h>945</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>560.0;1300.0;560.0;1330.0;10.0;1330.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>42</y>
+      <w>217</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>By Timothy Couch, Will Hildreth, Daniel Johnson</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
