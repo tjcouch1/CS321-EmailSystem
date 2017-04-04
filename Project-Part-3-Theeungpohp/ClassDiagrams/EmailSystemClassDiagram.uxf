@@ -187,7 +187,7 @@ m2=n</panel_attributes>
       <x>168</x>
       <y>77</y>
       <w>140</w>
-      <h>252</h>
+      <h>259</h>
     </coordinates>
     <panel_attributes>GUI
 --
@@ -210,7 +210,8 @@ m2=n</panel_attributes>
 +addAccount()
 +deleteAccount(int userIndex, 
             int siteIndex, 
-            int accountIndex)</panel_attributes>
+            int accountIndex)
++closeEmail()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -385,12 +386,12 @@ m2=3</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>189</x>
-      <y>322</y>
+      <y>329</y>
       <w>406</w>
-      <h>945</h>
+      <h>938</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>560.0;1300.0;560.0;1330.0;10.0;1330.0;10.0;10.0</additional_attributes>
+    <additional_attributes>560.0;1290.0;560.0;1320.0;10.0;1320.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
