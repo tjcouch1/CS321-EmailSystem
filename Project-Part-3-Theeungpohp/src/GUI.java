@@ -26,7 +26,8 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Timothy Couch, Will Hildreth, Daniel Johnson
  * @date 27 February 2017
  */
-public class GUI {
+public class GUI
+{
 	Controller controller;
 
 	JTextArea messageArea;
@@ -38,7 +39,8 @@ public class GUI {
 	 * @param c
 	 *            Controller to use
 	 */
-	GUI(Controller c) {
+	GUI(Controller c)
+	{
 		controller = c;
 
 		// Main window
@@ -46,49 +48,53 @@ public class GUI {
 		mainFrame.setSize(800, 600);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setTitle("Email System - Theeungpohp");
-		
-		//top menu thing
+
+		// top menu thing
 		JMenuBar menuBar = new JMenuBar();
-		
+
 		JMenu accountMenu = new JMenu("Account");
-		
+
 		JMenuItem addAccountItem = new JMenuItem("Add Account");
 		addAccountItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//add account code
+			public void actionPerformed(ActionEvent e)
+			{
+				// add account code
 			}
 		});
 		accountMenu.add(addAccountItem);
 		JMenuItem removeAccountItem = new JMenuItem("Remove Account");
 		removeAccountItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//remove account code
+			public void actionPerformed(ActionEvent e)
+			{
+				// remove account code
 			}
 		});
 		accountMenu.add(removeAccountItem);
-		
+
 		menuBar.add(accountMenu);
-		
+
 		JMenu userMenu = new JMenu("User");
-		
+
 		JMenuItem addUserItem = new JMenuItem("Add User");
 		addUserItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//add user code
+			public void actionPerformed(ActionEvent e)
+			{
+				// add user code
 			}
 		});
 		userMenu.add(addUserItem);
 		JMenuItem removeUserItem = new JMenuItem("Remove User");
 		removeUserItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//remove user code
+			public void actionPerformed(ActionEvent e)
+			{
+				// remove user code
 			}
 		});
 		userMenu.add(removeUserItem);
-		
+
 		menuBar.add(userMenu);
-		
-		//finish and add menubar
+
+		// finish and add menubar
 		mainFrame.setJMenuBar(menuBar);
 
 		// top panel of stuff - Daniel
@@ -101,80 +107,75 @@ public class GUI {
 
 		JButton composeButton = new JButton("Compose");
 		buttonPanel.add(composeButton);
-		composeButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		composeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
 				// Compose message Pop-up code here
 			}
 		});
-		
+
 		JButton sendButton = new JButton("Send");
 		buttonPanel.add(sendButton);
-		sendButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		sendButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
 				// Send message code here
 			}
 		});
-		
+
 		JButton replyButton = new JButton("Reply");
 		buttonPanel.add(replyButton);
-		replyButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		replyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
 				// Reply to message Pop-up code here
 			}
 		});
-		
+
 		JButton deleteButton = new JButton("Delete");
 		buttonPanel.add(deleteButton);
-		deleteButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		deleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
 				// Delete message code here
 			}
 		});
-		
+
 		topPanel.add(buttonPanel);
-		//END TOP BUTTON PANEL CODE -Daniel
-		
+		// END TOP BUTTON PANEL CODE -Daniel
+
 		// Adding temp 2nd button panel for JTree testing -Daniel
 		/*
-		JPanel buttonPanel2 = new JPanel();
-		
-
-		// testing - Please DO NOT REMOVE (Only comment out)
-		JButton clearButton = new JButton("Clear Message");
-		buttonPanel2.add(clearButton);
-		clearButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				messageArea.setText("");
-			}
-		});
-
-		JButton addNodeButton = new JButton("Add Node");
-		buttonPanel2.add(addNodeButton);
-		addNodeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-				if (selectedNode != null)
-					model.insertNodeInto(new DefaultMutableTreeNode("newChild"), selectedNode, selectedNode.getChildCount());
-			}
-		});
-
-		JButton deleteNodeButton = new JButton("Delete Node");
-		buttonPanel2.add(deleteNodeButton);
-		deleteNodeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-				if (selectedNode != null)
-				{
-					tree.setSelectionPath(null);
-					model.removeNodeFromParent(selectedNode);
-				}
-			}
-		});
-
-		topPanel.add(buttonPanel2);
-		*/
+		 * JPanel buttonPanel2 = new JPanel();
+		 * 
+		 * 
+		 * // testing - Please DO NOT REMOVE (Only comment out) JButton
+		 * clearButton = new JButton("Clear Message");
+		 * buttonPanel2.add(clearButton); clearButton.addActionListener(new
+		 * ActionListener() { public void actionPerformed(ActionEvent e) {
+		 * messageArea.setText(""); } });
+		 * 
+		 * JButton addNodeButton = new JButton("Add Node");
+		 * buttonPanel2.add(addNodeButton); addNodeButton.addActionListener(new
+		 * ActionListener() { public void actionPerformed(ActionEvent e) {
+		 * DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+		 * DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)
+		 * tree.getLastSelectedPathComponent(); if (selectedNode != null)
+		 * model.insertNodeInto(new DefaultMutableTreeNode("newChild"),
+		 * selectedNode, selectedNode.getChildCount()); } });
+		 * 
+		 * JButton deleteNodeButton = new JButton("Delete Node");
+		 * buttonPanel2.add(deleteNodeButton);
+		 * deleteNodeButton.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent e) { DefaultTreeModel model =
+		 * (DefaultTreeModel) tree.getModel(); DefaultMutableTreeNode
+		 * selectedNode = (DefaultMutableTreeNode)
+		 * tree.getLastSelectedPathComponent(); if (selectedNode != null) {
+		 * tree.setSelectionPath(null);
+		 * model.removeNodeFromParent(selectedNode); } } });
+		 * 
+		 * topPanel.add(buttonPanel2);
+		 */
 
 		mainFrame.add(topPanel, BorderLayout.NORTH);
 
@@ -204,11 +205,12 @@ public class GUI {
 		tree = new JTree(root);
 
 		tree.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
-			public void valueChanged(TreeSelectionEvent e) {
+			public void valueChanged(TreeSelectionEvent e)
+			{
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (selectedNode != null)
 				{
-					//make arraylist of path
+					// make arraylist of path
 					ArrayList<Integer> pathList = new ArrayList<>();
 					DefaultMutableTreeNode currNode = selectedNode;
 					while (currNode.getParent() != null)
@@ -216,9 +218,9 @@ public class GUI {
 						pathList.add(0, currNode.getParent().getIndex(currNode));
 						currNode = (DefaultMutableTreeNode) currNode.getParent();
 					}
-					
+
 					messageArea.append(pathList.toString());
-					
+
 					messageArea.append(e.getPath().toString() + ": ");
 					messageArea.append(selectedNode.getUserObject().toString() + "\n");
 				}
@@ -246,5 +248,49 @@ public class GUI {
 
 		// ending line
 		mainFrame.setVisible(true);
+	}
+
+	/**
+	 * retrieves an email at specified spot
+	 * 
+	 * @param userIndex
+	 *            index of user
+	 * @param siteIndex
+	 *            index of site
+	 * @param accountIndex
+	 *            index of account
+	 * @param mailboxIndex
+	 *            index of mailbox
+	 * @param emailIndex
+	 *            index of email to retrieve
+	 * @return email to retrieve
+	 * 
+	 * @author Timothy Couch
+	 */
+	private Email getEmail(int userIndex, int siteIndex, int accountIndex, int mailboxIndex, int emailIndex)
+	{
+		return controller.getEmail(userIndex, siteIndex, accountIndex, mailboxIndex, emailIndex);
+	}
+
+	/**
+	 * deletes an email (moves to trash or deletes)
+	 * 
+	 * @param userIndex
+	 *            index of user
+	 * @param siteIndex
+	 *            index of site
+	 * @param accountIndex
+	 *            index of account
+	 * @param mailboxIndex
+	 *            index of mailbox
+	 * @param emailIndex
+	 *            index of email
+	 * @return whether or not it deleted properly
+	 * 
+	 * @author Timothy Couch
+	 */
+	private boolean deleteEmail(int userIndex, int siteIndex, int accountIndex, int mailboxIndex, int emailIndex)
+	{
+		return controller.deleteEmail(userIndex, siteIndex, accountIndex, mailboxIndex, emailIndex);
 	}
 }

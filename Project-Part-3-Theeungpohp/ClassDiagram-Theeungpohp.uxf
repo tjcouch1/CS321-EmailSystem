@@ -44,7 +44,7 @@
             int emailIndex): Email
 +deleteEmail(int accountIndex, 
             int mailboxIndex, 
-            int emailIndex)
+            int emailIndex): boolean
 +addAccount(String emailAddress): Account
 +deleteAccount(int accountIndex)</panel_attributes>
     <additional_attributes/>
@@ -67,7 +67,7 @@ m2=n</panel_attributes>
     <coordinates>
       <x>504</x>
       <y>483</y>
-      <w>196</w>
+      <w>203</w>
       <h>273</h>
     </coordinates>
     <panel_attributes>User
@@ -91,7 +91,7 @@ m2=n</panel_attributes>
 +deleteEmail(int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex)
+            int emailIndex): boolean
 +addAccount(String emailAddress): Account
 +deleteAccount(int siteIndex, 
             int accountIndex)</panel_attributes>
@@ -116,15 +116,15 @@ m2=n</panel_attributes>
 +getEmail(int mailboxIndex, 
             int emailIndex): Email
 +deleteEmail(int mailboxIndex, 
-            int emailIndex)</panel_attributes>
+            int emailIndex): boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>266</x>
+      <x>252</x>
       <y>1099</y>
-      <w>147</w>
+      <w>175</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>Mailbox
@@ -133,7 +133,7 @@ m2=n</panel_attributes>
 --
 +getEmail(int emailIndex): Email
 +addEmail(Email e)
-+deleteEmail(int emailIndex)</panel_attributes>
++deleteEmail(int emailIndex): boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -160,15 +160,15 @@ m2=n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>406</x>
+      <x>420</x>
       <y>1120</y>
-      <w>112</w>
+      <w>98</w>
       <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=n</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -184,9 +184,9 @@ m2=n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
+      <x>161</x>
       <y>35</y>
-      <w>140</w>
+      <w>147</w>
       <h>259</h>
     </coordinates>
     <panel_attributes>GUI
@@ -204,7 +204,7 @@ m2=n</panel_attributes>
             int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex)
+            int emailIndex): boolean
 +addUser()
 +deleteUser(int userIndex)
 +addAccount()
@@ -246,7 +246,7 @@ m2=n</panel_attributes>
             int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex)
+            int emailIndex): boolean
 +addUser(String userName): User
 +deleteUser(int userIndex)
 +addAccount(String emailAddress): Account
@@ -288,7 +288,7 @@ m2=n</panel_attributes>
             int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex)
+            int emailIndex): boolean
 +addUser(String userName): User
 +deleteUser(int userIndex)
 +addAccount(String emailAddress): Account
