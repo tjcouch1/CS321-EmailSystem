@@ -59,7 +59,11 @@ public class GUI
 		addAccountItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
+				//TODO: Will - add a dialogue to add an account with a custom name, not just this set one
 				// add account code
+				DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+				addAccountToTree(controller.addAccount("swagtedoo@swag.edu", 1, 1),
+						(DefaultMutableTreeNode) root.getChildAt(1).getChildAt(1));
 			}
 		});
 		accountMenu.add(addAccountItem);
@@ -193,49 +197,58 @@ public class GUI
 		// END TOP BUTTON PANEL CODE -Daniel
 
 		// Adding temp 2nd button panel for JTree testing -Daniel
-		/*
-				JPanel buttonPanel2 = new JPanel();
-		
-				// testing - Please DO NOT REMOVE (Only comment out)
-				JButton clearButton = new JButton("Clear Message");
-				buttonPanel2.add(clearButton);
-				clearButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e)
-					{
-						messageArea.setText("");
-					}
-				});
-		
-				JButton addNodeButton = new JButton("Add Node");
-				buttonPanel2.add(addNodeButton);
-				addNodeButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e)
-					{
-						DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-						DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-						if (selectedNode != null)
-							model.insertNodeInto(new DefaultMutableTreeNode("newChild"), selectedNode,
-									selectedNode.getChildCount());
-					}
-				});
-		
-				JButton deleteNodeButton = new JButton("Delete Node");
-				buttonPanel2.add(deleteNodeButton);
-				deleteNodeButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e)
-					{
-						DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-						DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-						if (selectedNode != null)
-						{
-							tree.setSelectionPath(null);
-							model.removeNodeFromParent(selectedNode);
-						}
-					}
-				});
-		
-				topPanel.add(buttonPanel2);
-		*/
+		///*
+		JPanel buttonPanel2 = new JPanel();
+
+		// testing - Please DO NOT REMOVE (Only comment out)
+		JButton clearButton = new JButton("Clear Message");
+		buttonPanel2.add(clearButton);
+		clearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				messageArea.setText("");
+			}
+		});
+
+		JButton addNodeButton = new JButton("Add Node");
+		buttonPanel2.add(addNodeButton);
+		addNodeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				if (selectedNode != null)
+					model.insertNodeInto(new DefaultMutableTreeNode("newChild"), selectedNode,
+							selectedNode.getChildCount());
+			}
+		});
+
+		JButton deleteNodeButton = new JButton("Delete Node");
+		buttonPanel2.add(deleteNodeButton);
+		deleteNodeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				if (selectedNode != null)
+				{
+					tree.setSelectionPath(null);
+					model.removeNodeFromParent(selectedNode);
+				}
+			}
+		});
+
+		JButton addTestTreeButton = new JButton("Add Test Tree");
+		buttonPanel2.add(addTestTreeButton);
+		addTestTreeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				createTestingTree();
+			}
+		});
+
+		topPanel.add(buttonPanel2);
+		//*/
 		mainFrame.add(topPanel, BorderLayout.NORTH);
 
 		// center panel with hierarchy and message - Timothy Couch
@@ -251,7 +264,7 @@ public class GUI
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Email - Theeungpohp");
 
 		//set up default tree for testing
-		createTestingTree(root);
+		//createTestingTree(root);
 
 		// set up the tree and add a listener
 		tree = new JTree(root);
@@ -340,9 +353,10 @@ public class GUI
 	{
 		return controller.deleteEmail(userIndex, siteIndex, accountIndex, mailboxIndex, emailIndex);
 	}
-	
+
 	/**
 	 * deletes an account
+	 * 
 	 * @param userIndex user that holds the account
 	 * @param siteIndex site that holds the account
 	 * @param accountIndex the account index in the site
@@ -375,12 +389,14 @@ public class GUI
 	/**
 	 * sets up a testing setup
 	 * 
-	 * @param root starting node
+	 * @precondition tree must be fully initialized
 	 * 
 	 * @author Timothy Couch
 	 */
-	private void createTestingTree(DefaultMutableTreeNode root)
+	private void createTestingTree()//DefaultMutableTreeNode root)
 	{
+		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 		// KaneStaff-
 		addUserToTree(controller.addUser("KaneStaff"), root);
 		//   Local Site-
@@ -473,6 +489,8 @@ public class GUI
 		addEmailToTree(e, root);
 		//tieRemote2
 		//         Email from kaneRemote1-
+		
+		tree.expandRow(0);
 
 		/*DefaultMutableTreeNode kaneNode = new DefaultMutableTreeNode("KaneStaff");
 		kaneNode.add(new DefaultMutableTreeNode("Marth"));
@@ -491,14 +509,25 @@ public class GUI
 	 * @param root node from which to add the user
 	 * @return same user
 	 * 
+	 * @precondition tree must be fully initialized
+	 * 
 	 * @author Timothy Couch
 	 */
 	private User addUserToTree(User u, DefaultMutableTreeNode root)
 	{
+		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+
 		DefaultMutableTreeNode userNode = new DefaultMutableTreeNode(u.getName());
-		userNode.add(new DefaultMutableTreeNode("Local Site"));
-		userNode.add(new DefaultMutableTreeNode("Remote Site"));
-		root.add(userNode);
+		//userNode.add(new DefaultMutableTreeNode("Local Site"));
+		//userNode.add(new DefaultMutableTreeNode("Remote Site"));
+		//root.add(userNode);
+
+		if (root != null)
+		{
+			model.insertNodeInto(userNode, root, root.getChildCount());
+			model.insertNodeInto(new DefaultMutableTreeNode("Local Site"), userNode, userNode.getChildCount());
+			model.insertNodeInto(new DefaultMutableTreeNode("Remote Site"), userNode, userNode.getChildCount());
+		}
 
 		return u;
 	}
@@ -508,29 +537,48 @@ public class GUI
 	 * 
 	 * @param a account to add (along with mailboxes)
 	 * @param siteNode node from which to add account
-	 * @return same user
+	 * @return same account
+	 * 
+	 * @precondition tree must be fully initialized
 	 * 
 	 * @author Timothy Couch
 	 */
 	private Account addAccountToTree(Account a, DefaultMutableTreeNode siteNode)
 	{
+		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+
 		DefaultMutableTreeNode accountNode = new DefaultMutableTreeNode(a.getEmailAddress());
-		accountNode.add(new DefaultMutableTreeNode("Inbox"));
-		accountNode.add(new DefaultMutableTreeNode("Sent"));
-		accountNode.add(new DefaultMutableTreeNode("Trash"));
-		siteNode.add(accountNode);
+		//accountNode.add(new DefaultMutableTreeNode("Inbox"));
+		//accountNode.add(new DefaultMutableTreeNode("Sent"));
+		//accountNode.add(new DefaultMutableTreeNode("Trash"));
+		//siteNode.add(accountNode);
+
+		if (siteNode != null)
+		{
+			model.insertNodeInto(accountNode, siteNode, siteNode.getChildCount());
+			model.insertNodeInto(new DefaultMutableTreeNode("Inbox"), accountNode, accountNode.getChildCount());
+			model.insertNodeInto(new DefaultMutableTreeNode("Sent"), accountNode, accountNode.getChildCount());
+			model.insertNodeInto(new DefaultMutableTreeNode("Trash"), accountNode, accountNode.getChildCount());
+		}
 
 		return a;
 	}
-	
+
 	/**
 	 * adds an email to the tree on the sender and the receiver's accounts
+	 * 
 	 * @param e email to add
 	 * @param root root of the tree
 	 * @return same email
+	 * 
+	 * @precondition tree must be fully initialized
+	 * 
+	 * @author Timothy Couch
 	 */
 	private Email addEmailToTree(Email e, DefaultMutableTreeNode root)
 	{
+		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+
 		int emailsSent = 0;
 		for (int i = 0; i < root.getChildCount(); i++)
 		{
@@ -550,19 +598,29 @@ public class GUI
 					if (accountNode.getUserObject().toString() == e.getSender())//the account is the sender
 					{
 						DefaultMutableTreeNode sentBoxNode = (DefaultMutableTreeNode) accountNode.getChildAt(1);
-						sentBoxNode.add(new DefaultMutableTreeNode("To " + e.getReceiver() + " at " + e.getTimeStamp()));
+						//sentBoxNode.add(new DefaultMutableTreeNode("To " + e.getReceiver() + " at " + e.getTimeStamp()));
+
+						if (sentBoxNode != null)
+							model.insertNodeInto(
+									new DefaultMutableTreeNode("To " + e.getReceiver() + " at " + e.getTimeStamp()),
+									sentBoxNode, sentBoxNode.getChildCount());
 					}
 					else if (accountNode.getUserObject().toString() == e.getReceiver())//the account is the receiver
 					{
 						DefaultMutableTreeNode inboxNode = (DefaultMutableTreeNode) accountNode.getChildAt(0);
-						inboxNode.add(new DefaultMutableTreeNode("From " + e.getSender() + " at " + e.getTimeStamp()));
+						//inboxNode.add(new DefaultMutableTreeNode("From " + e.getSender() + " at " + e.getTimeStamp()));
+
+						if (inboxNode != null)
+							model.insertNodeInto(
+									new DefaultMutableTreeNode("From " + e.getSender() + " at " + e.getTimeStamp()),
+									inboxNode, inboxNode.getChildCount());
 					}
 				}
 			}
 		}
-		
+
 		//selectedNode.getUserObject().toString()
-		
+
 		return e;
 	}
 }
