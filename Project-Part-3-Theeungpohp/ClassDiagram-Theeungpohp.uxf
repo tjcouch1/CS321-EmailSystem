@@ -44,9 +44,9 @@
             int emailIndex): Email
 +deleteEmail(int accountIndex, 
             int mailboxIndex, 
-            int emailIndex): boolean
+            int emailIndex): Email
 +addAccount(String emailAddress): Account
-+deleteAccount(int accountIndex)</panel_attributes>
++deleteAccount(int accountIndex): Account</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -68,7 +68,7 @@ m2=n</panel_attributes>
       <x>504</x>
       <y>483</y>
       <w>203</w>
-      <h>273</h>
+      <h>294</h>
     </coordinates>
     <panel_attributes>User
 --
@@ -91,10 +91,12 @@ m2=n</panel_attributes>
 +deleteEmail(int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex): boolean
-+addAccount(String emailAddress): Account
+            int emailIndex): Email
++addAccount(String emailAddress,
+				int siteIndex): Account
 +deleteAccount(int siteIndex, 
-            int accountIndex)</panel_attributes>
+            int accountIndex): Account
++getName(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -103,20 +105,22 @@ m2=n</panel_attributes>
       <x>245</x>
       <y>854</y>
       <w>189</w>
-      <h>126</h>
+      <h>147</h>
     </coordinates>
     <panel_attributes>Account
 --
 -inbox: Mailbox
 -sent: Mailbox
 -trash: Mailbox
+-emailAddress: EmailAddress
 --
 +getMailboxByIndex(int mailboxIndex)
 +sendEmail(Email e)
 +getEmail(int mailboxIndex, 
             int emailIndex): Email
 +deleteEmail(int mailboxIndex, 
-            int emailIndex): boolean</panel_attributes>
+            int emailIndex): Email
++getEmailAddress(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -133,27 +137,29 @@ m2=n</panel_attributes>
 --
 +getEmail(int emailIndex): Email
 +addEmail(Email e)
-+deleteEmail(int emailIndex): boolean</panel_attributes>
++deleteEmail(int emailIndex): Email</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>504</x>
-      <y>1085</y>
+      <y>1064</y>
       <w>147</w>
-      <h>105</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>Email
 --
 -message: String
 -sender: String
 -reciever: String
+-timeStamp: String
 --
 +getMessage(): String
 +getSender(): String
 +getReceiver(): String
-+copy(): Email
++getTimeStamp(): String
++clone(): Email
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -184,12 +190,13 @@ m2=n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>161</x>
+      <x>126</x>
       <y>35</y>
-      <w>147</w>
-      <h>259</h>
+      <w>182</w>
+      <h>392</h>
     </coordinates>
-    <panel_attributes>GUI
+    <panel_attributes>style=wordwrap
+GUI
 --
 +GUI(Controller c)
 +composeEmail()
@@ -204,14 +211,20 @@ m2=n</panel_attributes>
             int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex): boolean
+            int emailIndex): Email
 +addUser()
 +deleteUser(int userIndex)
 +addAccount()
 +deleteAccount(int userIndex, 
             int siteIndex, 
-            int accountIndex)
-+closeEmail()</panel_attributes>
+            int accountIndex): Account
++closeEmail()
++addUserToTree()
++treeNodePath(DefaultMutableTreeNode n): ArrayList&lt;Integer&gt;
++createTestingTree(DefaultMutableTreeNode root)
++addUserToTree(User u, DefaultMutableTreeNode root): User
++addAccountToTree(Account a, DefaultMutableTreeNode siteNode): Account
++addEmailToTree(Email e, DefaultMutableTreeNode root): Email</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -231,7 +244,7 @@ m2=n</panel_attributes>
       <x>336</x>
       <y>84</y>
       <w>196</w>
-      <h>224</h>
+      <h>245</h>
     </coordinates>
     <panel_attributes>Controller
 --
@@ -246,13 +259,15 @@ m2=n</panel_attributes>
             int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex): boolean
+            int emailIndex): Email
 +addUser(String userName): User
 +deleteUser(int userIndex)
-+addAccount(String emailAddress): Account
++addAccount(String emailAddress,
+            int userIndex,
+            int siteIndex): Account
 +deleteAccount(int userIndex, 
             int siteIndex, 
-            int accountIndex)</panel_attributes>
+            int accountIndex): Account</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -272,7 +287,7 @@ m2=n</panel_attributes>
       <x>567</x>
       <y>126</y>
       <w>196</w>
-      <h>231</h>
+      <h>245</h>
     </coordinates>
     <panel_attributes>EmailClientSystem
 --
@@ -288,13 +303,15 @@ m2=n</panel_attributes>
             int siteIndex, 
             int accountIndex, 
             int mailboxIndex, 
-            int emailIndex): boolean
+            int emailIndex): Email
 +addUser(String userName): User
 +deleteUser(int userIndex)
-+addAccount(String emailAddress): Account
++addAccount(String emailAddress,
+				int userIndex,
+				int siteIndex): Account
 +deleteAccount(int userIndex, 
             int siteIndex, 
-            int accountIndex)</panel_attributes>
+            int accountIndex): Account</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -323,14 +340,14 @@ m2=n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>637</x>
-      <y>350</y>
+      <y>364</y>
       <w>21</w>
-      <h>147</h>
+      <h>133</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=n</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -362,14 +379,14 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>336</x>
-      <y>973</y>
+      <y>994</y>
       <w>28</w>
-      <h>140</h>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=3</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -386,12 +403,12 @@ m2=3</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>189</x>
-      <y>287</y>
+      <y>420</y>
       <w>406</w>
-      <h>938</h>
+      <h>805</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>560.0;1290.0;560.0;1320.0;10.0;1320.0;10.0;10.0</additional_attributes>
+    <additional_attributes>560.0;1100.0;560.0;1130.0;10.0;1130.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

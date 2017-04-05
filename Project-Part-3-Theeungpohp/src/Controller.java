@@ -12,8 +12,7 @@ public class Controller
 	/**
 	 * Initializes a controller with the EmailClientSystem supplied
 	 * 
-	 * @param e
-	 *            EmailClientSystem to use
+	 * @param e EmailClientSystem to use
 	 */
 	Controller(EmailClientSystem e)
 	{
@@ -23,16 +22,11 @@ public class Controller
 	/**
 	 * retrieves an email at specified spot
 	 * 
-	 * @param userIndex
-	 *            index of user
-	 * @param siteIndex
-	 *            index of site
-	 * @param accountIndex
-	 *            index of account
-	 * @param mailboxIndex
-	 *            index of mailbox
-	 * @param emailIndex
-	 *            index of email to retrieve
+	 * @param userIndex index of user
+	 * @param siteIndex index of site
+	 * @param accountIndex index of account
+	 * @param mailboxIndex index of mailbox
+	 * @param emailIndex index of email to retrieve
 	 * @return email to retrieve
 	 * 
 	 * @author Timothy Couch
@@ -45,22 +39,53 @@ public class Controller
 	/**
 	 * deletes an email (moves to trash or deletes)
 	 * 
-	 * @param userIndex
-	 *            index of user
-	 * @param siteIndex
-	 *            index of site
-	 * @param accountIndex
-	 *            index of account
-	 * @param mailboxIndex
-	 *            index of mailbox
-	 * @param emailIndex
-	 *            index of email
+	 * @param userIndex index of user
+	 * @param siteIndex index of site
+	 * @param accountIndex index of account
+	 * @param mailboxIndex index of mailbox
+	 * @param emailIndex index of email
 	 * @return whether or not it deleted properly
 	 * 
 	 * @author Timothy Couch
 	 */
-	public boolean deleteEmail(int userIndex, int siteIndex, int accountIndex, int mailboxIndex, int emailIndex)
+	public Email deleteEmail(int userIndex, int siteIndex, int accountIndex, int mailboxIndex, int emailIndex)
 	{
 		return ecs.deleteEmail(userIndex, siteIndex, accountIndex, mailboxIndex, emailIndex);
+	}
+
+	/**
+	 * adds a user
+	 * 
+	 * @param userName name for user
+	 * @return new user
+	 */
+	public User addUser(String userName)
+	{
+		return ecs.addUser(userName);
+	}
+
+	/**
+	 * adds an account
+	 * 
+	 * @param emailAddress address for account
+	 * @param userIndex index of user to add to
+	 * @param siteIndex index of site to add to
+	 * @return new account
+	 */
+	public Account addAccount(String emailAddress, int userIndex, int siteIndex)
+	{
+		return ecs.addAccount(emailAddress, userIndex, siteIndex);
+	}
+
+	/**
+	 * deletes an account
+	 * @param userIndex user that holds the account
+	 * @param siteIndex site that holds the account
+	 * @param accountIndex the account index in the site
+	 * @return the account deleted
+	 */
+	public Account deleteAccount(int userIndex, int siteIndex, int accountIndex)
+	{
+		return ecs.deleteAccount(userIndex, siteIndex, accountIndex);
 	}
 }
