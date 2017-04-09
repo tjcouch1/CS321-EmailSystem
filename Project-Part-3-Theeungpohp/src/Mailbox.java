@@ -27,6 +27,8 @@ public class Mailbox
 	/**
 	 * adds email to this mailbox
 	 * @param email email to add
+	 * 
+	 * @author Timothy Couch
 	 */
 	public void addEmail(Email email)
 	{

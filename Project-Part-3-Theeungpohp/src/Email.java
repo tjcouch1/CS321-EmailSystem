@@ -19,6 +19,8 @@ public class Email implements Cloneable
 	 * @param message email message
 	 * @param sender email sender
 	 * @param receiver email receiver
+	 * 
+	 * @author Daniel Johnson, Timothy Couch
 	 */
 	public Email(String message, String sender, String receiver)
 	{
@@ -35,6 +37,8 @@ public class Email implements Cloneable
 	 * @param sender email sender
 	 * @param receiver email receiver
 	 * @param timeStamp time stamp
+	 * 
+	 * @author Timothy Couch
 	 */
 	private Email(String message, String sender, String receiver, String timeStamp)
 	{
@@ -66,6 +70,8 @@ public class Email implements Cloneable
 	
 	/**
 	 * makes a clone of this email
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Email clone()
 	{

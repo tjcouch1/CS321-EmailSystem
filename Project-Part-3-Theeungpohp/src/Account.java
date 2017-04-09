@@ -84,6 +84,8 @@ public class Account
 	 * @param e email to send or receive
 	 * 
 	 * NOTE: The email is cloned before adding to the account to ensure that no emails are linked
+	 * 
+	 * @author Timothy Couch
 	 */
 	public void sendEmail(Email e)
 	{

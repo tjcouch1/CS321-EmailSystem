@@ -54,23 +54,14 @@ public class Controller
 	}
 
 	/**
-	 * adds a user
-	 * 
-	 * @param userName name for user
-	 * @return new user
-	 */
-	public User addUser(String userName)
-	{
-		return ecs.addUser(userName);
-	}
-
-	/**
 	 * adds an account
 	 * 
 	 * @param emailAddress address for account
 	 * @param userIndex index of user to add to
 	 * @param siteIndex index of site to add to
 	 * @return new account
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Account addAccount(String emailAddress, int userIndex, int siteIndex)
 	{
@@ -83,6 +74,8 @@ public class Controller
 	 * @param siteIndex site that holds the account
 	 * @param accountIndex the account index in the site
 	 * @return the account deleted
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Account deleteAccount(int userIndex, int siteIndex, int accountIndex)
 	{
@@ -103,19 +96,6 @@ public class Controller
 	}
 	
 	/**
-	* adds an account
-	*
-	* @param email address to add
-	* @return the account added
-	*
-	* @author Will Hildreth
-	*/
-	public Account addAccount(String emailAddress)
-	{
-			return ecs.addAccount(emailAdress);
-	}
-	
-	/**
 	* adds a user
 	*
 	* @param user name to add
@@ -123,7 +103,7 @@ public class Controller
 	*
 	* @author Will Hildreth
 	*/
-	public User addAccount(String userName)
+	public User addUser(String userName)
 	{
 			return ecs.addUser(userName);
 	}

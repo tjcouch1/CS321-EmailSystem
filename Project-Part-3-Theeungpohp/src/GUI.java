@@ -386,13 +386,15 @@ public class GUI
 	* adds an account
 	*
 	* @param email address to add
+	* @param userIndex index of user to add to
+	* @param siteIndex index of site to add to
 	* @return the account added
 	*
 	* @author Will Hildreth
 	*/
-	public Account addAccount(String emailAddress)
+	public Account addAccount(String emailAddress, int userIndex, int siteIndex)
 	{
-			return controller.addAccount(emailAdress);
+		return controller.addAccount(emailAddress, userIndex, siteIndex);
 	}
 	
 	/**
@@ -403,7 +405,7 @@ public class GUI
 	*
 	* @author Will Hildreth
 	*/
-	public User addAccount(String userName)
+	public User addUser(String userName)
 	{
 			return controller.addUser(userName);
 	}

@@ -54,6 +54,8 @@ public class Site
 	 * 
 	 * @param emailAddress address for account
 	 * @return new account
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Account addAccount(String emailAddress)
 	{
@@ -66,6 +68,8 @@ public class Site
 	 * deletes an account
 	 * @param accountIndex the account index in the site
 	 * @return the account deleted
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Account deleteAccount(int accountIndex)
 	{

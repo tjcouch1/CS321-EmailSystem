@@ -58,6 +58,8 @@ public class EmailClientSystem
 	 * 
 	 * @param userName name for user
 	 * @return new user
+	 * 
+	 * @author Timothy Couch
 	 */
 	public User addUser(String userName)
 	{
@@ -73,6 +75,8 @@ public class EmailClientSystem
 	 * @param userIndex index of user to add to
 	 * @param siteIndex index of site to add to
 	 * @return new account
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Account addAccount(String emailAddress, int userIndex, int siteIndex)
 	{

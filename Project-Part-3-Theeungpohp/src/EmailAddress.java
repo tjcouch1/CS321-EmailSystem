@@ -9,7 +9,13 @@ public class EmailAddress
 	private String name;
 	private String siteName;
 	private String address;
-
+	
+	/**
+	 * creates an email address from string a
+	 * @param a address in string form
+	 * 
+	 * @author Timothy Couch
+	 */
 	EmailAddress(String a)
 	{
 		name = a.substring(0, a.indexOf("@"));

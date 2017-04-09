@@ -63,6 +63,8 @@ public class User
 	 * @param emailAddress address for account
 	 * @param siteIndex index of site to add to
 	 * @return new account
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Account addAccount(String emailAddress, int siteIndex)
 	{
@@ -76,6 +78,8 @@ public class User
 	 * @param siteIndex site that holds the account
 	 * @param accountIndex the account index in the site
 	 * @return the account deleted
+	 * 
+	 * @author Timothy Couch
 	 */
 	public Account deleteAccount(int siteIndex, int accountIndex)
 	{
@@ -89,6 +93,8 @@ public class User
 	 * 
 	 * @param siteIndex 0 for local or 1 for remote
 	 * @return site associated with index
+	 * 
+	 * @author Timothy Couch
 	 */
 	private Site getSiteByIndex(int siteIndex)
 	{
