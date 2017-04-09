@@ -88,4 +88,43 @@ public class Controller
 	{
 		return ecs.deleteAccount(userIndex, siteIndex, accountIndex);
 	}
+	
+	/**
+	* deletes a user
+	*
+	* @param userIndex the user index
+	* @return the user deleted
+	*
+	* @author Will Hildreth
+	*/
+	public User deleteUser(int userIndex)
+	{
+		return ecs.deleteUser(userIndex);
+	}
+	
+	/**
+	* adds an account
+	*
+	* @param email address to add
+	* @return the account added
+	*
+	* @author Will Hildreth
+	*/
+	public Account addAccount(String emailAddress)
+	{
+			return ecs.addAccount(emailAdress);
+	}
+	
+	/**
+	* adds a user
+	*
+	* @param user name to add
+	* @return the user added
+	*
+	* @author Will Hildreth
+	*/
+	public User addAccount(String userName)
+	{
+			return ecs.addUser(userName);
+	}
 }

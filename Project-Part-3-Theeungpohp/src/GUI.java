@@ -361,10 +361,51 @@ public class GUI
 	 * @param siteIndex site that holds the account
 	 * @param accountIndex the account index in the site
 	 * @return the account deleted
+	 *
+	 * @author Timothy Couch
 	 */
 	public Account deleteAccount(int userIndex, int siteIndex, int accountIndex)
 	{
 		return controller.deleteAccount(userIndex, siteIndex, accountIndex);
+	}
+	
+	/**
+	* deletes a user
+	*
+	* @param userIndex the user index
+	* @return the user deleted
+	*
+	* @author Will Hildreth
+	*/
+	public User deleteUser(int userIndex)
+	{
+		return controller.deleteUser(userIndex);
+	}
+	
+	/**
+	* adds an account
+	*
+	* @param email address to add
+	* @return the account added
+	*
+	* @author Will Hildreth
+	*/
+	public Account addAccount(String emailAddress)
+	{
+			return controller.addAccount(emailAdress);
+	}
+	
+	/**
+	* adds a user
+	*
+	* @param user name to add
+	* @return the user added
+	*
+	* @author Will Hildreth
+	*/
+	public User addAccount(String userName)
+	{
+			return controller.addUser(userName);
 	}
 
 	/**

@@ -94,4 +94,19 @@ public class EmailClientSystem
 			return null;
 		return users.get(userIndex).deleteAccount(siteIndex, accountIndex);
 	}
+	
+		/**
+	* deletes a user
+	*
+	* @param userIndex the user index
+	* @return the user deleted
+	*
+	* @author Will Hildreth
+	*/
+	public User deleteUser(int userIndex)
+	{
+		if (userIndex < 0 || userIndex >= users.size())
+			return null;
+		return users.remove(userIndex);
+	}
 }
