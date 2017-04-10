@@ -109,4 +109,15 @@ public class User
 	{
 		return name;
 	}
+	
+	/**
+	 * add email to appropriate mailboxes
+	 * @param e email to send
+	 * @author Daniel Johnson
+	 */
+	public void sendEmail(Email e)
+	{
+		localSite.sendEmail(e);
+		remoteSite.sendEmail(e);
+	}
 }

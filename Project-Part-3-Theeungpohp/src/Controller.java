@@ -107,4 +107,14 @@ public class Controller
 	{
 			return ecs.addUser(userName);
 	}
+	
+	/**
+	 * add email to appropriate mailbox
+	 * @param e email to send
+	 * @author Daniel Johnson
+	 */
+	public void sendEmail(Email e)
+	{
+		ecs.sendEmail(e);
+	}
 }

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -162,17 +164,82 @@ public class GUI
 		composeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				// Compose message Pop-up code here
+				// Compose message Pop-up code by Daniel Johnson
+				
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				if(selectedNode != null)
+				{
+					ArrayList<Integer> pathList = treeNodePath(selectedNode);
+					if(pathList.size() >= 3) // in a specific email account
+					{
+						DefaultMutableTreeNode theNode = (DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)).getChildAt(pathList.get(2)); // node for current account
+						JDialog composeDialog = new JDialog(mainFrame, "Compose New Email", true);
+						composeDialog.setSize(500, 400);
+						
+						// Add Text field
+						JPanel messagePanel = new JPanel();
+						messagePanel.setLayout(new BorderLayout());
+						messagePanel.setBorder(new EtchedBorder());
+						JTextArea messageArea = new JTextArea("");
+						messageArea.setEditable(true);
+						messageArea.setLineWrap(true);
+						messageArea.setWrapStyleWord(true);
+						
+						
+						messagePanel.add(new JScrollPane(messageArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+								JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
+						composeDialog.add(messagePanel, BorderLayout.CENTER);
+						
+						// Add address field and send button
+						JPanel topPanel = new JPanel();
+						topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
+						topPanel.setBorder(new EtchedBorder());
+						
+						JPanel messagePane2 = new JPanel();
+						messagePane2.setLayout(new BorderLayout());
+						messagePane2.setBorder(new EtchedBorder());
+						JTextArea toField = new JTextArea("");
+						toField.setEditable(true);
+						toField.setLineWrap(true);
+						
+						// label
+						JLabel toLabel = new JLabel("To:", JLabel.LEADING);
+						toLabel.setLabelFor(toField);
+						toLabel.setOpaque(true);
+						
+						JLabel fromLabel = new JLabel("From: " + theNode.getUserObject().toString());
+						fromLabel.setOpaque(true);
+						
+						messagePane2.add(fromLabel, BorderLayout.NORTH);
+						messagePane2.add(toLabel, BorderLayout.CENTER);
+						messagePane2.add(toField, BorderLayout.SOUTH);
+						topPanel.add(messagePane2);
+						
+						JPanel buttonPanel = new JPanel();
+						
+						JButton sendButton = new JButton("Send");
+						buttonPanel.add(sendButton);
+						sendButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e)
+							{ 
+								Email email = new Email(messageArea.getText(),theNode.getUserObject().toString() , toField.getText());
+								controller.sendEmail(email);
+								addEmailToTree(email, root);
+								messageArea.setText("SENT");
+								toField.setText("");
+							}
+						});
+						
+						topPanel.add(buttonPanel);
+						composeDialog.add(topPanel, BorderLayout.NORTH);
+						
+						composeDialog.setVisible(true);
+					}
+				}
 			}
-		});
-
-		JButton sendButton = new JButton("Send");
-		buttonPanel.add(sendButton);
-		sendButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-			{
-				// Send message code here
-			}
+			
 		});
 
 		JButton replyButton = new JButton("Reply");
@@ -180,7 +247,79 @@ public class GUI
 		replyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				// Reply to message Pop-up code here
+				// Reply to message Pop-up code by Daniel Johnson
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				if(selectedNode != null)
+				{
+					ArrayList<Integer> pathList = treeNodePath(selectedNode);
+					if(pathList.size() == 5) // in a specific email account
+					{
+						Email currentEmail = getEmail(pathList.get(0), pathList.get(1), pathList.get(2), pathList.get(3), pathList.get(4)); // get selected email
+						DefaultMutableTreeNode theNode = (DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)).getChildAt(pathList.get(2));
+						JDialog composeDialog = new JDialog(mainFrame, "Compose New Reply", true);
+						composeDialog.setSize(500, 400);
+						
+						// Add Text field
+						JPanel messagePanel = new JPanel();
+						messagePanel.setLayout(new BorderLayout());
+						messagePanel.setBorder(new EtchedBorder());
+						JTextArea messageArea = new JTextArea("");
+						messageArea.setEditable(true);
+						messageArea.setLineWrap(true);
+						messageArea.setWrapStyleWord(true);
+						
+						
+						messagePanel.add(new JScrollPane(messageArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+								JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
+						composeDialog.add(messagePanel, BorderLayout.CENTER);
+						
+						// Add address field and send button
+						JPanel topPanel = new JPanel();
+						topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
+						topPanel.setBorder(new EtchedBorder());
+						
+						JPanel messagePane2 = new JPanel();
+						messagePane2.setLayout(new BorderLayout());
+						messagePane2.setBorder(new EtchedBorder());
+						JTextArea toField = new JTextArea(currentEmail.getSender());
+						toField.setEditable(false);
+						toField.setLineWrap(true);
+						
+						// label
+						JLabel toLabel = new JLabel("To:", JLabel.LEADING);
+						toLabel.setLabelFor(toField);
+						toLabel.setOpaque(true);
+						
+						JLabel fromLabel = new JLabel("From: " + theNode.getUserObject().toString());
+						fromLabel.setOpaque(true);
+						
+						messagePane2.add(fromLabel, BorderLayout.NORTH);
+						messagePane2.add(toLabel, BorderLayout.CENTER);
+						messagePane2.add(toField, BorderLayout.SOUTH);
+						topPanel.add(messagePane2);
+						
+						JPanel buttonPanel = new JPanel();
+						
+						JButton sendButton = new JButton("Send");
+						buttonPanel.add(sendButton);
+						sendButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e)
+							{ 
+								Email email = new Email(messageArea.getText(),theNode.getUserObject().toString() , toField.getText());
+								controller.sendEmail(email);
+								addEmailToTree(email, root);
+								messageArea.setText("SENT");
+							}
+						});
+						
+						topPanel.add(buttonPanel);
+						composeDialog.add(topPanel, BorderLayout.NORTH);
+						
+						composeDialog.setVisible(true);
+					}
+				}
 			}
 		});
 
@@ -319,6 +458,8 @@ public class GUI
 						messageArea.setText("Sender: " + email.getSender() + "\nRecipient: " + email.getReceiver()
 								+ "\nTime Stamp: " + email.getTimeStamp() + "\n\n\n" + email.getMessage());
 					}
+					else // close email - Daniel Johnson
+						messageArea.setText("");
 					/*Good code to see how to access various parts of the tree
 					messageArea.append(pathList.toString()); //[0, 2]
 					
@@ -326,6 +467,8 @@ public class GUI
 					messageArea.append(selectedNode.getUserObject().toString() + "\n"); //Link
 					*/
 				}
+				else // close email - Daniel Johnson
+					messageArea.setText("");
 			}
 		});
 
@@ -680,7 +823,7 @@ public class GUI
 									new DefaultMutableTreeNode("To " + e.getReceiver() + " at " + e.getTimeStamp()),
 									sentBoxNode, sentBoxNode.getChildCount());
 					}
-					else if (accountNode.getUserObject().toString() == e.getReceiver())//the account is the receiver
+					else if (accountNode.getUserObject().toString().equals(e.getReceiver()))//the account is the receiver
 					{
 						DefaultMutableTreeNode inboxNode = (DefaultMutableTreeNode) accountNode.getChildAt(0);
 						//inboxNode.add(new DefaultMutableTreeNode("From " + e.getSender() + " at " + e.getTimeStamp()));

@@ -113,4 +113,17 @@ public class EmailClientSystem
 			return null;
 		return users.remove(userIndex);
 	}
+	
+	/**
+	 * add email to appropriate mailboxes
+	 * @param e email to send
+	 * @author Daniel Johnson
+	 */
+	public void sendEmail(Email e)
+	{
+		for(User user:users)
+		{
+			user.sendEmail(e);
+		}
+	}
 }

@@ -77,4 +77,17 @@ public class Site
 			return null;
 		return accounts.remove(accountIndex);
 	}
+	
+	/**
+	 * adds email to appropriate mailboxes
+	 * @param e email to send
+	 * @author Daniel Johnson
+	 */
+	public void sendEmail(Email e)
+	{
+		for(Account account : accounts)
+		{
+			account.sendEmail(e);
+		}
+	}
 }

@@ -12,7 +12,7 @@ public class EmailMain
 		EmailClientSystem ecs = new EmailClientSystem();
 		Controller controller = new Controller(ecs);
 		
-		/*GUI gui = */new GUI(controller);
+		/*GUI gui = */ new GUI(controller);
 	}
 	
 }
