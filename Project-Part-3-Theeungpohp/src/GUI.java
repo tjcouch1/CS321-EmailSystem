@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -59,11 +60,20 @@ public class GUI
 		addAccountItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				//TODO: Will - add a dialogue to add an account with a custom name, not just this set one
-				// add account code
-				DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
-				addAccountToTree(controller.addAccount("swagtedoo@swag.edu", 1, 1),
-						(DefaultMutableTreeNode) root.getChildAt(1).getChildAt(1));
+				//Code by Will Hildreth
+				String input = JOptionPane.showInputDialog("Add Account:");
+				
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				if (selectedNode != null)
+				{
+					ArrayList<Integer> pathList = treeNodePath(selectedNode);
+					if (pathList.size() == 2) // a site
+					{
+						DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+						addAccountToTree(controller.addAccount(input, pathList.get(0), pathList.get(1)),
+									(DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)));
+					}
+				}
 			}
 		});
 		accountMenu.add(addAccountItem);
@@ -99,7 +109,14 @@ public class GUI
 		addUserItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				// add user code
+				//Code by Will Hildreth
+				String input = JOptionPane.showInputDialog("Add User:");
+	
+				DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+				addUserToTree(controller.addUser(input),
+							(DefaultMutableTreeNode) root);
+				
+				tree.expandRow(0);
 			}
 		});
 		userMenu.add(addUserItem);
@@ -107,7 +124,22 @@ public class GUI
 		removeUserItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				// remove user code
+				// remove account code by Will Hildreth
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				if (selectedNode != null)
+				{
+					ArrayList<Integer> pathList = treeNodePath(selectedNode);
+					if (pathList.size() == 1)//it is a user
+					{
+						User deleted = deleteUser(pathList.get(0));
+						if (deleted != null)
+						{
+							tree.setSelectionPath(null);
+							model.removeNodeFromParent(selectedNode);
+						}
+					}
+				}
 			}
 		});
 		userMenu.add(removeUserItem);
