@@ -2,7 +2,7 @@
 /**
  * Controller - handles interfacing GUI and EmailClientSystem
  * 
- * @author Timothy Couch
+ * @author Timothy Couch, Will Hildreth
  * @date 27 February 2017
  */
 public class Controller

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * EmailClientSystem - handles execution of email actions
  * 
- * @author catsu
+ * @author Will Hildreth, Timothy Couch
  *
  */
 public class EmailClientSystem

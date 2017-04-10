@@ -1,7 +1,7 @@
 /**
  * User - represents a person who uses the email system. Has sites
  * 
- * @author Timothy Couch
+ * @author Timothy Couch, Will Hildreth
  * @date 4/4/17
  */
 public class User

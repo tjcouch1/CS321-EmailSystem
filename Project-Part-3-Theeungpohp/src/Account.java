@@ -1,7 +1,7 @@
 /**
  * Account - holds mailboxes of emails
  * 
- * @author Timothy Couch
+ * @author Timothy Couch, Will Hildreth
  * @date 4/4/17
  */
 public class Account
