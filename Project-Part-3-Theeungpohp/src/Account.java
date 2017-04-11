@@ -89,10 +89,13 @@ public class Account
 	 */
 	public void sendEmail(Email e)
 	{
-		if (e.getSender().equals(emailAddress.toString()))
-			sent.addEmail(e.clone());
-		else if (e.getReceiver().equals(emailAddress.toString()))
-			inbox.addEmail(e.clone());
+		if (e != null)
+		{
+			if (e.getSender().equals(emailAddress.toString()))
+				sent.addEmail(e.clone());
+			else if (e.getReceiver().equals(emailAddress.toString()))
+				inbox.addEmail(e.clone());
+		}
 	}
 	
 	public String getEmailAddress()

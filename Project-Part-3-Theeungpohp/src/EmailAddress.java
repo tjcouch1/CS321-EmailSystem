@@ -16,11 +16,26 @@ public class EmailAddress
 	 * 
 	 * @author Timothy Couch
 	 */
-	EmailAddress(String a)
+	public EmailAddress(String a)
 	{
-		name = a.substring(0, a.indexOf("@"));
-		siteName = a.substring(a.indexOf("@"));
-		address = a;
+		if (a == null || a.length() == 0)
+		{
+			name = "";
+			siteName = "";
+			address = "";
+		}
+		else if (a.indexOf("@") < 0)
+		{
+			name = a;
+			siteName = "";
+			address = a;
+		}
+		else
+		{
+			name = a.substring(0, a.indexOf("@"));
+			siteName = a.substring(a.indexOf("@"));
+			address = a;
+		}
 	}
 
 	public String getName()
