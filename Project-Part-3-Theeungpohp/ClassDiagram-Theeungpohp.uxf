@@ -221,7 +221,6 @@ GUI
 +closeEmail()
 +addUserToTree()
 +treeNodePath(DefaultMutableTreeNode n): ArrayList&lt;Integer&gt;
-+createTestingTree()
 +addUserToTree(User u, DefaultMutableTreeNode root): User
 +addAccountToTree(Account a, DefaultMutableTreeNode siteNode): Account
 +addEmailToTree(Email e, DefaultMutableTreeNode root): Email</panel_attributes>

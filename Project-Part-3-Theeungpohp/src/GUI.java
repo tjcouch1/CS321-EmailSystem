@@ -368,7 +368,7 @@ public class GUI
 		// END TOP BUTTON PANEL CODE -Daniel
 
 		// Adding temp 2nd button panel for JTree testing -Daniel
-		///*
+		/*
 		JPanel buttonPanel2 = new JPanel();
 
 		// testing - Please DO NOT REMOVE (Only comment out)
@@ -419,7 +419,7 @@ public class GUI
 		});
 
 		topPanel.add(buttonPanel2);
-		//*/
+		*/
 		mainFrame.add(topPanel, BorderLayout.NORTH);
 
 		// center panel with hierarchy and message - Timothy Couch
@@ -603,7 +603,8 @@ public class GUI
 		}
 		return pathList;
 	}
-
+	
+	/*
 	/**
 	 * sets up a testing setup
 	 * 
@@ -611,6 +612,8 @@ public class GUI
 	 * 
 	 * @author Timothy Couch
 	 */
+	
+	/*
 	private void createTestingTree()//DefaultMutableTreeNode root)
 	{
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
@@ -709,16 +712,8 @@ public class GUI
 		//         Email from kaneRemote1-
 		
 		tree.expandRow(0);
-
-		/*DefaultMutableTreeNode kaneNode = new DefaultMutableTreeNode("KaneStaff");
-		kaneNode.add(new DefaultMutableTreeNode("Marth"));
-		kaneNode.add(new DefaultMutableTreeNode("Link"));
-		kaneNode.add(new DefaultMutableTreeNode("Fox"));
-		
-		root.add(kaneNode);
-		root.add(new DefaultMutableTreeNode("Tieske"));
-		root.add(new DefaultMutableTreeNode("Super Fang Chan"));*/
 	}
+	*/
 
 	/**
 	 * adds a user to the tree at the node specified
