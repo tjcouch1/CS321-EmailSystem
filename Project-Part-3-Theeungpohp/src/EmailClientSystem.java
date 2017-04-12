@@ -63,9 +63,13 @@ public class EmailClientSystem
 	 */
 	public User addUser(String userName)
 	{
-		User u = new User(userName);
-		users.add(u);
-		return u;
+		if (userName != null)
+		{
+			User u = new User(userName);
+			users.add(u);
+			return u;
+		}
+		return null;
 	}
 
 	/**

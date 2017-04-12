@@ -59,9 +59,13 @@ public class Site
 	 */
 	public Account addAccount(String emailAddress)
 	{
-		Account a = new Account(emailAddress);
-		accounts.add(a);
-		return a;
+		if (emailAddress != null)
+		{
+			Account a = new Account(emailAddress);
+			accounts.add(a);
+			return a;
+		}
+		return null;
 	}
 
 	/**

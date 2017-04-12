@@ -604,7 +604,6 @@ public class GUI
 		return pathList;
 	}
 	
-	/*
 	/**
 	 * sets up a testing setup
 	 * 
@@ -612,9 +611,7 @@ public class GUI
 	 * 
 	 * @author Timothy Couch
 	 */
-	
-	/*
-	private void createTestingTree()//DefaultMutableTreeNode root)
+	public void createTestingTree()//DefaultMutableTreeNode root)
 	{
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
@@ -713,7 +710,6 @@ public class GUI
 		
 		tree.expandRow(0);
 	}
-	*/
 
 	/**
 	 * adds a user to the tree at the node specified
