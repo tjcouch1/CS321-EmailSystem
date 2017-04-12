@@ -345,20 +345,6 @@ public class GUI
 						
 						composeDialog.setVisible(true);
 					}
-					else // need to select an account in hierarchy
-					{
-						JOptionPane.showMessageDialog(mainFrame,
-							    "Please select an account to send from.",
-							    "Error",
-							    JOptionPane.ERROR_MESSAGE);
-					}
-				}
-				else // need to select an account in hierarchy
-				{
-					JOptionPane.showMessageDialog(mainFrame,
-						    "Please select an account to send from",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			
@@ -487,20 +473,6 @@ public class GUI
 							composeDialog.setVisible(true);
 						}
 					}
-					else // select valid email prompt
-					{
-						JOptionPane.showMessageDialog(mainFrame,
-							    "Please select an email in an inbox or in trash to reply to.",
-							    "Error",
-							    JOptionPane.ERROR_MESSAGE);
-					}
-				}
-				else // select valid email prompt
-				{
-					JOptionPane.showMessageDialog(mainFrame,
-						    "Please select an email in an inbox or in trash to reply to.",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
