@@ -72,10 +72,13 @@ public class GUI
 					{
 						DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();						
 						String input = "";
-						
+												
 						while(input.equals(""))
 						{
 							input = JOptionPane.showInputDialog("Add Account:");
+							
+							if(input == null)
+								break;
 							
 							for(int i = 0; i < root.getChildCount(); i++)
 							{
@@ -98,8 +101,11 @@ public class GUI
 							}
 						}
 						
-						addAccountToTree(controller.addAccount(input, pathList.get(0), pathList.get(1)),
+						if(input != null)
+						{
+							addAccountToTree(controller.addAccount(input, pathList.get(0), pathList.get(1)),
 									(DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)));
+						}
 					}
 				}
 			}
@@ -145,6 +151,9 @@ public class GUI
 					DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
 					input = JOptionPane.showInputDialog("Add User:");
 					
+					if(input == null)
+						break;
+					
 					for(int i = 0; i < root.getChildCount(); i++)
 					{
 						if(input.equals(root.getChildAt(i).toString()))
@@ -154,14 +163,18 @@ public class GUI
 						}
 					}
 				}
-	
-				DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
-				addUserToTree(controller.addUser(input),
-							(DefaultMutableTreeNode) root);
 				
-				tree.expandRow(0);
+				if(input != null)
+				{
+					DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+					addUserToTree(controller.addUser(input),
+								(DefaultMutableTreeNode) root);
+					
+					tree.expandRow(0);
+				}
 			}
 		});
+		
 		userMenu.add(addUserItem);
 		JMenuItem removeUserItem = new JMenuItem("Remove User");
 		removeUserItem.addActionListener(new ActionListener() {
