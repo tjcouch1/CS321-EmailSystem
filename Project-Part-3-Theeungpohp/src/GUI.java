@@ -107,7 +107,11 @@ public class GUI
 									(DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)));
 						}
 					}
+					else
+						JOptionPane.showMessageDialog(mainFrame, "Select Valid Site.");
 				}
+				else
+					JOptionPane.showMessageDialog(mainFrame, "Select Valid Site.");
 			}
 		});
 		accountMenu.add(addAccountItem);
@@ -131,6 +135,8 @@ public class GUI
 						}
 					}
 				}
+				else
+					JOptionPane.showMessageDialog(mainFrame, "Select Valid Account.");
 			}
 		});
 		accountMenu.add(removeAccountItem);
@@ -195,7 +201,11 @@ public class GUI
 							model.removeNodeFromParent(selectedNode);
 						}
 					}
+					else
+						JOptionPane.showMessageDialog(mainFrame, "Select Valid User.");
 				}
+				else
+					JOptionPane.showMessageDialog(mainFrame, "Select Valid User.");
 			}
 		});
 		userMenu.add(removeUserItem);
