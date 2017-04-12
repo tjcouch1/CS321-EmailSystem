@@ -21,41 +21,33 @@ public class JUnitTestSite {
 	
 	@Test public void testEmail()
 	{
-		User u = new User("test user");
+		Site s = new Site();
 		Email e = new Email("Hi", "test@gmail.com", "test2@gmail.com");
-		u.addAccount("test2@gmail.com", 0);
-		u.addAccount("test2@gmail.com", 1);
+		s.addAccount("test2@gmail.com");
 		
-		u.sendEmail(e);
-		assertTrue(u.deleteEmail(0, 0, 0, 1) == null);
-		assertTrue(u.deleteEmail(0, 0, 1, 0) == null);
-		assertTrue(u.deleteEmail(0, 0, 1, 1) == null);
-		assertTrue(u.deleteEmail(0, 1, 0, 0) == null);
-		assertTrue(u.deleteEmail(0, 1, 0, 1) == null);
-		assertTrue(u.deleteEmail(0, 1, 1, 0) == null);
-		assertTrue(u.deleteEmail(0, 1, 1, 1) == null);
-		assertTrue(u.deleteEmail(1, 0, 0, 1) == null);
-		assertTrue(u.deleteEmail(1, 0, 1, 0) == null);
-		assertTrue(u.deleteEmail(1, 0, 1, 1) == null);
-		assertTrue(u.deleteEmail(1, 1, 0, 0) == null);
-		assertTrue(u.deleteEmail(1, 1, 0, 1) == null);
-		assertTrue(u.deleteEmail(1, 1, 1, 0) == null);
-		assertTrue(u.deleteEmail(1, 1, 1, 1) == null);
+		s.sendEmail(e);
+		assertTrue(s.deleteEmail(0, 0, 1) == null);
+		assertTrue(s.deleteEmail(0, 1, 0) == null);
+		assertTrue(s.deleteEmail(0, 1, 1) == null);
+		assertTrue(s.deleteEmail(1, 0, 0) == null);
+		assertTrue(s.deleteEmail(1, 0, 1) == null);
+		assertTrue(s.deleteEmail(1, 1, 0) == null);
+		assertTrue(s.deleteEmail(1, 1, 1) == null);
 		
-		Email deleted = u.deleteEmail(0, 0, 0, 0);
+		Email get = s.getEmail(0, 0, 0);
+		assertTrue(get.getMessage().equals(e.getMessage()));
+		assertTrue(get.getSender().equals(e.getSender()));
+		assertTrue(get.getReceiver().equals(e.getReceiver()));
+		assertTrue(get.getTimeStamp().equals(e.getTimeStamp()));
+		
+		Email deleted = s.deleteEmail(0, 0, 0);
 		assertTrue(deleted.getMessage().equals(e.getMessage()));
 		assertTrue(deleted.getSender().equals(e.getSender()));
 		assertTrue(deleted.getReceiver().equals(e.getReceiver()));
 		assertTrue(deleted.getTimeStamp().equals(e.getTimeStamp()));
 		
-		deleted = u.deleteEmail(1, 0, 0, 0);
-		assertTrue(deleted.getMessage().equals(e.getMessage()));
-		assertTrue(deleted.getSender().equals(e.getSender()));
-		assertTrue(deleted.getReceiver().equals(e.getReceiver()));
-		assertTrue(deleted.getTimeStamp().equals(e.getTimeStamp()));
-		
-		assertTrue(u.deleteEmail(0, 0, 0, 0) == null);
-		assertTrue(u.deleteEmail(1, 0, 0, 0) == null);
+		assertTrue(s.deleteEmail(0, 0, 0) == null);
+		assertTrue(s.getEmail(0, 0, 0) == null);
 	}
 	
 	@Test public void testAccounts()

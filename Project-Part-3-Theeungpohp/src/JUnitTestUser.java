@@ -63,6 +63,18 @@ public class JUnitTestUser
 		assertTrue(u.deleteEmail(1, 1, 1, 0) == null);
 		assertTrue(u.deleteEmail(1, 1, 1, 1) == null);
 		
+		Email get = u.getEmail(0, 0, 0, 0);
+		assertTrue(get.getMessage().equals(e.getMessage()));
+		assertTrue(get.getSender().equals(e.getSender()));
+		assertTrue(get.getReceiver().equals(e.getReceiver()));
+		assertTrue(get.getTimeStamp().equals(e.getTimeStamp()));
+		
+		get = u.getEmail(1, 0, 0, 0);
+		assertTrue(get.getMessage().equals(e.getMessage()));
+		assertTrue(get.getSender().equals(e.getSender()));
+		assertTrue(get.getReceiver().equals(e.getReceiver()));
+		assertTrue(get.getTimeStamp().equals(e.getTimeStamp()));
+		
 		Email deleted = u.deleteEmail(0, 0, 0, 0);
 		assertTrue(deleted.getMessage().equals(e.getMessage()));
 		assertTrue(deleted.getSender().equals(e.getSender()));
@@ -77,6 +89,9 @@ public class JUnitTestUser
 		
 		assertTrue(u.deleteEmail(0, 0, 0, 0) == null);
 		assertTrue(u.deleteEmail(1, 0, 0, 0) == null);
+		
+		assertTrue(u.getEmail(0, 0, 0, 0) == null);
+		assertTrue(u.getEmail(1, 0, 0, 0) == null);
 	}
 	
 	@Test public void TestGetName()
