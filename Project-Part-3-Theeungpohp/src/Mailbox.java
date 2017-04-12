@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * Mailbox - holds emails
+ * @author Timothy Couch
+ * @date 4/12/17
+ */
 public class Mailbox
 {
 	private ArrayList<Email> emails;

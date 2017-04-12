@@ -139,6 +139,7 @@ public class JUnitTestEmailClientSystem
 	{
 		ecs.addUser("user1");
 		ecs.addUser("user2");
+		assertTrue(ecs.addAccount(null, 0, 0) == null);
 		assertTrue(ecs.addAccount("user1@local.net", 0, 0) != null);
 		assertTrue(ecs.addAccount("user2@remote.net", 1, 1) != null);
 	}
