@@ -278,11 +278,55 @@ public class GUI
 						sendButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e)
 							{ 
-								Email email = new Email(messageArea.getText(),theNode.getUserObject().toString() , toField.getText());
-								controller.sendEmail(email);
-								addEmailToTree(email, root);
-								messageArea.setText("SENT");
-								toField.setText("");
+								// test if recipient exists before sending email
+								boolean recipientExists = false;
+								String recipient = toField.getText();
+								for (int i = 0; i < root.getChildCount(); i++)
+								{
+									if (recipientExists)
+										break;
+									MutableTreeNode userNode = (MutableTreeNode) root.getChildAt(i);
+									for (int j = 0; j < userNode.getChildCount(); j++)
+									{
+										if (recipientExists)
+											break;
+										MutableTreeNode siteNode = (MutableTreeNode) userNode.getChildAt(j);
+										for (int k = 0; k < siteNode.getChildCount(); k++)
+										{
+											if (recipientExists)
+												break;
+											DefaultMutableTreeNode accountNode = (DefaultMutableTreeNode) siteNode.getChildAt(k);
+											if (accountNode.getUserObject().toString().equals(recipient))//the account is recipient
+											{
+												recipientExists = true;
+											}
+										}
+									}
+								}
+								if(theNode.getUserObject().toString().equals(recipient))
+								{
+									JOptionPane.showMessageDialog(mainFrame,
+										    "Cannot send an email to self",
+										    "Error",
+										    JOptionPane.ERROR_MESSAGE);
+								}
+								else if(recipientExists) // then send email
+								{
+									Email email = new Email(messageArea.getText(),theNode.getUserObject().toString() , toField.getText());
+									controller.sendEmail(email);
+									addEmailToTree(email, root);
+									messageArea.setText("SENT");
+									toField.setText("");
+									composeDialog.setVisible(false);
+								}
+								else // tell user to try again
+								{
+									JOptionPane.showMessageDialog(mainFrame,
+										    "Recipient email address does not exist",
+										    "Error",
+										    JOptionPane.ERROR_MESSAGE);
+								}
+									
 							}
 						});
 						
@@ -308,70 +352,116 @@ public class GUI
 				if(selectedNode != null)
 				{
 					ArrayList<Integer> pathList = treeNodePath(selectedNode);
-					if(pathList.size() == 5) // in a specific email account
+					if(pathList.size() == 5 && pathList.get(3) != 1) // have a specific email selected in inbox or trash
 					{
 						Email currentEmail = getEmail(pathList.get(0), pathList.get(1), pathList.get(2), pathList.get(3), pathList.get(4)); // get selected email
-						DefaultMutableTreeNode theNode = (DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)).getChildAt(pathList.get(2));
-						JDialog composeDialog = new JDialog(mainFrame, "Compose New Reply", true);
-						composeDialog.setSize(500, 400);
 						
-						// Add Text field
-						JPanel messagePanel = new JPanel();
-						messagePanel.setLayout(new BorderLayout());
-						messagePanel.setBorder(new EtchedBorder());
-						JTextArea messageArea = new JTextArea("");
-						messageArea.setEditable(true);
-						messageArea.setLineWrap(true);
-						messageArea.setWrapStyleWord(true);
-						
-						
-						messagePanel.add(new JScrollPane(messageArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-								JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
-						composeDialog.add(messagePanel, BorderLayout.CENTER);
-						
-						// Add address field and send button
-						JPanel topPanel = new JPanel();
-						topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
-						topPanel.setBorder(new EtchedBorder());
-						
-						JPanel messagePane2 = new JPanel();
-						messagePane2.setLayout(new BorderLayout());
-						messagePane2.setBorder(new EtchedBorder());
-						JTextArea toField = new JTextArea(currentEmail.getSender());
-						toField.setEditable(false);
-						toField.setLineWrap(true);
-						
-						// label
-						JLabel toLabel = new JLabel("To:", JLabel.LEADING);
-						toLabel.setLabelFor(toField);
-						toLabel.setOpaque(true);
-						
-						JLabel fromLabel = new JLabel("From: " + theNode.getUserObject().toString());
-						fromLabel.setOpaque(true);
-						
-						messagePane2.add(fromLabel, BorderLayout.NORTH);
-						messagePane2.add(toLabel, BorderLayout.CENTER);
-						messagePane2.add(toField, BorderLayout.SOUTH);
-						topPanel.add(messagePane2);
-						
-						JPanel buttonPanel = new JPanel();
-						
-						JButton sendButton = new JButton("Send");
-						buttonPanel.add(sendButton);
-						sendButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e)
-							{ 
-								Email email = new Email(messageArea.getText(),theNode.getUserObject().toString() , toField.getText());
-								controller.sendEmail(email);
-								addEmailToTree(email, root);
-								messageArea.setText("SENT");
-							}
-						});
-						
-						topPanel.add(buttonPanel);
-						composeDialog.add(topPanel, BorderLayout.NORTH);
-						
-						composeDialog.setVisible(true);
+						//Check that sender was not the current account (cannot reply to self)
+						MutableTreeNode mailbox = (MutableTreeNode) selectedNode.getParent();
+						DefaultMutableTreeNode account = (DefaultMutableTreeNode) mailbox.getParent();
+						if(!account.getUserObject().toString().equals(currentEmail.getSender()))
+						{
+							//  get root and Set up Dialog
+							DefaultMutableTreeNode theNode = (DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)).getChildAt(pathList.get(2));
+							JDialog composeDialog = new JDialog(mainFrame, "Compose New Reply", true);
+							composeDialog.setSize(500, 400);
+							
+							// Add Text field
+							JPanel messagePanel = new JPanel();
+							messagePanel.setLayout(new BorderLayout());
+							messagePanel.setBorder(new EtchedBorder());
+							JTextArea messageArea = new JTextArea("");
+							messageArea.setEditable(true);
+							messageArea.setLineWrap(true);
+							messageArea.setWrapStyleWord(true);
+							
+							
+							messagePanel.add(new JScrollPane(messageArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+									JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
+							composeDialog.add(messagePanel, BorderLayout.CENTER);
+							
+							// Add address field and send button
+							JPanel topPanel = new JPanel();
+							topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
+							topPanel.setBorder(new EtchedBorder());
+							
+							JPanel messagePane2 = new JPanel();
+							messagePane2.setLayout(new BorderLayout());
+							messagePane2.setBorder(new EtchedBorder());
+							JTextArea toField = new JTextArea(currentEmail.getSender());
+							toField.setEditable(false);
+							toField.setLineWrap(true);
+							
+							// label
+							JLabel toLabel = new JLabel("To:", JLabel.LEADING);
+							toLabel.setLabelFor(toField);
+							toLabel.setOpaque(true);
+							
+							JLabel fromLabel = new JLabel("From: " + theNode.getUserObject().toString());
+							fromLabel.setOpaque(true);
+							
+							messagePane2.add(fromLabel, BorderLayout.NORTH);
+							messagePane2.add(toLabel, BorderLayout.CENTER);
+							messagePane2.add(toField, BorderLayout.SOUTH);
+							topPanel.add(messagePane2);
+							
+							JPanel buttonPanel = new JPanel();
+							
+							JButton sendButton = new JButton("Send");
+							buttonPanel.add(sendButton);
+							sendButton.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e)
+								{ 
+									// test if recipient exists before sending email
+									boolean recipientExists = false;
+									String recipient = toField.getText();
+									for (int i = 0; i < root.getChildCount(); i++)
+									{
+										if (recipientExists)
+											break;
+										MutableTreeNode userNode = (MutableTreeNode) root.getChildAt(i);
+										for (int j = 0; j < userNode.getChildCount(); j++)
+										{
+											if (recipientExists)
+												break;
+											MutableTreeNode siteNode = (MutableTreeNode) userNode.getChildAt(j);
+											for (int k = 0; k < siteNode.getChildCount(); k++)
+											{
+												if (recipientExists)
+													break;
+												DefaultMutableTreeNode accountNode = (DefaultMutableTreeNode) siteNode.getChildAt(k);
+												if (accountNode.getUserObject().toString().equals(recipient))//the account is recipient
+												{
+													recipientExists = true;
+												}
+											}
+										}
+									}
+									
+									if(recipientExists) // then send email
+									{
+										Email email = new Email(messageArea.getText(),theNode.getUserObject().toString() , toField.getText());
+										controller.sendEmail(email);
+										addEmailToTree(email, root);
+										messageArea.setText("SENT");
+										toField.setText("");
+										composeDialog.setVisible(false);
+									}
+									else // tell user to try again
+									{
+										JOptionPane.showMessageDialog(mainFrame,
+											    "Recipient email address does not exist",
+											    "Error",
+											    JOptionPane.ERROR_MESSAGE);
+									}
+								}
+							});
+							
+							topPanel.add(buttonPanel);
+							composeDialog.add(topPanel, BorderLayout.NORTH);
+							
+							composeDialog.setVisible(true);
+						}
 					}
 				}
 			}
@@ -858,7 +948,7 @@ public class GUI
 					if (emailsSent >= 2)
 						break;
 					DefaultMutableTreeNode accountNode = (DefaultMutableTreeNode) siteNode.getChildAt(k);
-					if (accountNode.getUserObject().toString() == e.getSender())//the account is the sender
+					if (accountNode.getUserObject().toString().equals(e.getSender()))//the account is the sender
 					{
 						DefaultMutableTreeNode sentBoxNode = (DefaultMutableTreeNode) accountNode.getChildAt(1);
 						//sentBoxNode.add(new DefaultMutableTreeNode("To " + e.getReceiver() + " at " + e.getTimeStamp()));
