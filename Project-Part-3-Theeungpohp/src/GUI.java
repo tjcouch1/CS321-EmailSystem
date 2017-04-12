@@ -63,7 +63,6 @@ public class GUI
 			public void actionPerformed(ActionEvent e)
 			{
 				//Code by Will Hildreth
-				String input = JOptionPane.showInputDialog("Add Account:");
 				
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (selectedNode != null)
@@ -71,7 +70,34 @@ public class GUI
 					ArrayList<Integer> pathList = treeNodePath(selectedNode);
 					if (pathList.size() == 2) // a site
 					{
-						DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+						DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();						
+						String input = "";
+						
+						while(input.equals(""))
+						{
+							input = JOptionPane.showInputDialog("Add Account:");
+							
+							for(int i = 0; i < root.getChildCount(); i++)
+							{
+								for(int j = 0; j < root.getChildAt(i).getChildCount(); j++)
+								{
+									for(int k = 0; k < root.getChildAt(i).getChildAt(j).getChildCount(); k++)
+									{
+										System.out.println("k = " + k);
+										if(input.equals(root.getChildAt(i).getChildAt(j).getChildAt(k).toString()))
+										{
+											input = "";
+											break;
+										}
+									}
+									if(input.equals(""))
+										break;
+								}
+								if(input.equals(""))
+									break;
+							}
+						}
+						
 						addAccountToTree(controller.addAccount(input, pathList.get(0), pathList.get(1)),
 									(DefaultMutableTreeNode) root.getChildAt(pathList.get(0)).getChildAt(pathList.get(1)));
 					}
@@ -112,7 +138,22 @@ public class GUI
 			public void actionPerformed(ActionEvent e)
 			{
 				//Code by Will Hildreth
-				String input = JOptionPane.showInputDialog("Add User:");
+				String input = "";
+				
+				while(input.equals(""))
+				{
+					DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+					input = JOptionPane.showInputDialog("Add User:");
+					
+					for(int i = 0; i < root.getChildCount(); i++)
+					{
+						if(input.equals(root.getChildAt(i).toString()))
+						{
+							input = "";
+							break;
+						}
+					}
+				}
 	
 				DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
 				addUserToTree(controller.addUser(input),
