@@ -134,6 +134,7 @@ public class GUI
 							model.removeNodeFromParent(selectedNode);
 						}
 					}
+					else JOptionPane.showMessageDialog(mainFrame, "Select Valid Account.");
 				}
 				else
 					JOptionPane.showMessageDialog(mainFrame, "Select Valid Account.");
@@ -345,7 +346,9 @@ public class GUI
 						
 						composeDialog.setVisible(true);
 					}
+					else JOptionPane.showMessageDialog(mainFrame, "Select Valid Account.");
 				}
+				else JOptionPane.showMessageDialog(mainFrame, "Select Valid Account.");
 			}
 			
 		});
@@ -473,7 +476,9 @@ public class GUI
 							composeDialog.setVisible(true);
 						}
 					}
+					else JOptionPane.showMessageDialog(mainFrame, "Select Valid Email to Reply.");
 				}
+				else JOptionPane.showMessageDialog(mainFrame, "Select Valid Email to Reply.");
 			}
 		});
 
@@ -506,7 +511,9 @@ public class GUI
 							model.removeNodeFromParent(selectedNode);
 						}
 					}
+					else JOptionPane.showMessageDialog(mainFrame, "Select Valid Email.");
 				}
+				else JOptionPane.showMessageDialog(mainFrame, "Select Valid Email.");
 				/*
 				selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (selectedNode != null)
